@@ -6,16 +6,25 @@ var config = require ('./config');
 
 var T = new Twit(config);
 
-var tweet = {
-    status: 'hello world!'
-}
+setInterval(tweetIt, 1000*60);
 
-T.post('statuses/update', tweet, tweeted);
+tweetIt();
 
-function tweeted(err, data, response) {
-    if (err) {
-        console.log("Something went wrong!");
-    } else {
-        console.log("It worked!");
+function tweetIt() {
+    
+    var r = Math.floor(Math.random()*100);
+    
+    var tweet = {
+        status: 'here is a random number ' + r + ', wow!'
+    }
+
+    T.post('statuses/update', tweet, tweeted);
+
+    function tweeted(err, data, response) {
+        if (err) {
+            console.log("Something went wrong!");
+        } else {
+            console.log("It worked!");
+        }
     }
 }
