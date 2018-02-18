@@ -6,16 +6,18 @@ var config = require ('./config');
 
 var T = new Twit(config);
 
+var tweetArray = ['wow', 'hello', 'okay'];
+
+var randomTweet = tweetArray[Math.floor(Math.random() * tweetArray.length)];
+
 setInterval(tweetIt, 1000*60);
 
 tweetIt();
 
 function tweetIt() {
     
-    var r = Math.floor(Math.random()*100);
-    
     var tweet = {
-        status: 'here is a random number ' + r + ', wow!'
+        status: randomTweet
     }
 
     T.post('statuses/update', tweet, tweeted);
